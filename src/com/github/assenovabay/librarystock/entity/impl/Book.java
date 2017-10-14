@@ -3,6 +3,7 @@ package com.github.assenovabay.librarystock.entity.impl;
 import com.github.assenovabay.librarystock.constant.LibraryConstatnt;
 import com.github.assenovabay.librarystock.entity.Publication;
 
+import static com.github.assenovabay.librarystock.constant.LibraryConstatnt.FORMAT_BOOK_BODY;
 import static com.github.assenovabay.librarystock.constant.LibraryConstatnt.FORMAT_REGISTERED_PUB_BODY;
 
 /**
@@ -13,12 +14,19 @@ public class Book extends Publication {
 
     private String author;
     private int countPage;
-    private String janr;
+    private String genre;
 
     @Override
     public String getType() {
 
         return LibraryConstatnt.BOOK;
+    }
+
+    @Override
+    public String getAllInfo() {
+
+        return String.format(FORMAT_BOOK_BODY,getIdStorage(),
+                getAuthor(),getName(),getYear(),getCountPage(),getPublisher(),getGenre(),getDescription());
     }
 
     public String getAuthor() {
@@ -37,12 +45,12 @@ public class Book extends Publication {
         this.countPage = countPage;
     }
 
-    public String getJanr() {
-        return janr;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGenre(String janr) {
-        this.janr = janr;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     @Override

@@ -34,13 +34,13 @@ public class CreatorPublication implements Action {
         book.setAuthor(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
 
         System.out.println(INPUT_GENRE_PUB+MAX_COUNT_15);
-        book.setGenre(Validator.takeLimitString(scanner.next(), MAX_COUNT_15));
+        book.setGenre(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
 
         System.out.println(INPUT_YEAR_PUB+MAX_COUNT_4);
-        book.setYear(Validator.takeLimitString(scanner.next(), MAX_COUNT_4));
+        book.setYear(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_4));
 
         System.out.println(INPUT_COUNT_PAGE_PUB+MAX_COUNT_5);
-        book.setCountPage(Validator.takeLimitNumber(scanner.next(), MAX_COUNT_5));
+        book.setCountPage(Validator.takeLimitNumber(scanner.nextLine(), MAX_COUNT_5));
 
         System.out.println(INPUT_NAME_PUBLISHER_PUB+MAX_COUNT_15);
         book.setPublisher(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
@@ -63,13 +63,13 @@ public class CreatorPublication implements Action {
         magazine.setName(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_20));
 
         System.out.println(INPUT_MONTH_PUB+MAX_COUNT_15);
-        magazine.setMonth(Validator.takeLimitString(scanner.next(), MAX_COUNT_15));
+        magazine.setMonth(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
 
         System.out.println(INPUT_YEAR_PUB+MAX_COUNT_20);
-        magazine.setYear(Validator.takeLimitString(scanner.next(), MAX_COUNT_20));
+        magazine.setYear(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_20));
 
         System.out.println(INPUT_COUNT_PAGE_PUB+MAX_COUNT_4);
-        magazine.setCountPage(Validator.takeLimitNumber(scanner.next(), MAX_COUNT_4));
+        magazine.setCountPage(Validator.takeLimitNumber(scanner.nextLine(), MAX_COUNT_4));
 
         System.out.println(INPUT_NAME_PUBLISHER_PUB+MAX_COUNT_15);
         magazine.setPublisher(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
@@ -92,10 +92,10 @@ public class CreatorPublication implements Action {
         booklet.setName(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_20));
 
         System.out.println(INPUT_MONTH_PUB+MAX_COUNT_15);
-        booklet.setMonth(Validator.takeLimitString(scanner.next(), MAX_COUNT_15));
+        booklet.setMonth(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
 
         System.out.println(INPUT_YEAR_PUB+MAX_COUNT_4);
-        booklet.setYear(Validator.takeLimitString(scanner.next(), MAX_COUNT_4));
+        booklet.setYear(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_4));
 
         System.out.println(INPUT_NAME_PUBLISHER_PUB+MAX_COUNT_15);
         booklet.setPublisher(Validator.takeLimitString(scanner.nextLine(), MAX_COUNT_15));
@@ -167,7 +167,7 @@ public class CreatorPublication implements Action {
 
             isRunning = false; //Stop scanner of menu
 
-            defineCommand(scanner.next());
+            defineCommand(scanner.nextLine());
         }
     }
 }

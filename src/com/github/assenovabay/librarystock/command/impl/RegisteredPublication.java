@@ -44,27 +44,27 @@ public class RegisteredPublication implements Action {
 
         showPublication();
 
-        System.out.println("\nДля возврата в меню введите команду: \"00\"  ");
+        System.out.println(FOR_RETURN_MENU);
 
-        Scanner s = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         boolean isRunning = true;
 
         while (isRunning) { //Waiting need command
 
-            String i = s.next();
+            String command = scanner.next();
 
-            if ("00".equals(i)) {
+            if (RETURN_MENU_CODE.equals(command)) {
 
                 isRunning = false;
             } else {
 
-                System.out.println("Некоректная команда-> " + i);
+                System.out.println(INCORRECT_COMMAND + command);
             }
         }
 
-        Action menu = new MenuPublication(); //DisplayPublication menu
-        menu.execute();
+        new MenuPublication().execute(); //Display Publication menu
+
 
     }
 }

@@ -15,22 +15,31 @@ import static com.github.assenovabay.librarystock.constant.LibraryConstatnt.*;
 
 public class DisplayPublication implements Action {
 
-    private void displayFromStorage(Integer idPubInStorage) {
+    private void print(Publication publication) {
 
-        try {
+        System.out.println(SEPARATOR);
 
-            Publication currentPublication = ArrayStorage.INSTANCE.read(idPubInStorage);
+        switch (publication.getType()) { //Show header
 
-            currentPublication.setIdStorage(idPubInStorage); //Set id publication from array (index)
+            case BOOK:
+                System.out.printf(FORMAT_BOOK_BODY, ID, AUTHOR, LABEL, RELASE_DATA,
+                        COUNT_PAGE,PUBLISHER, GENRE, DESCRIPTION);
+                break;
 
-            System.out.printf(FORMAT_REGISTERED_PUB_BODY, ID, TYPE, LABEL, RELASE_DATA, COUNT_PAGE, PUBLISHER);
+            case BOOKLET:
+                System.out.printf(FORMAT_BOOKLET_BODY, ID, LABEL, RELASE_DATA, PUBLISHER, DESCRIPTION);
+                break;
 
-            System.out.println(currentPublication);
-
-        } catch (IndexOutOfBoundsException i) {
-
-            System.out.println(HAVE_NOT_PUB + idPubInStorage);
+            case MAGAZINE:
+                System.out.printf(FORMAT_MAGAZINE_BODY, ID, LABEL, RELASE_DATA, COUNT_PAGE, PUBLISHER,
+                        DESCRIPTION);
+                break;
         }
+
+        System.out.println(SEPARATOR);
+
+        System.out.println(publication.getAllInfo()); //Show body result
+
     }
 
     private void displayPublication(String idPublication) {
@@ -39,13 +48,23 @@ public class DisplayPublication implements Action {
 
             Integer idPubInStorage = Integer.valueOf(idPublication);
 
-            displayFromStorage(idPubInStorage);
+            try {
+
+                Publication currentPublication = ArrayStorage.INSTANCE.read(idPubInStorage);
+
+                currentPublication.setIdStorage(idPubInStorage); //Set id publication from array (index)
+
+                print(currentPublication); // Print info
+
+            } catch (IndexOutOfBoundsException i) {
+
+                System.out.println(HAVE_NOT_PUB + idPubInStorage);
+            }
 
         } catch (NumberFormatException n) {
 
             System.out.println(INCORRECT_COMMAND + idPublication);
         }
-
     }
 
     @Override
@@ -61,7 +80,7 @@ public class DisplayPublication implements Action {
 
         while (isRunning) { //Waiting input
 
-            String userInput = scanner.next();
+            String userInput = scanner.nextLine();
 
             if (RETURN_MENU_CODE.equals(userInput)) {
 

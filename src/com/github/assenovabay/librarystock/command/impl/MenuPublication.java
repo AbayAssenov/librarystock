@@ -21,27 +21,27 @@ public class MenuPublication implements Action {
 
         switch (command) {
 
-            case REGISTERED_PUB_CODE:
-                isRunning = false;
-                new RegisteredPublication().execute();
+            case REGISTERED_PUB_CODE: new RegisteredPublication().execute();
                 break;
-            case CREATOR_PUB_CODE:
-                isRunning = false;
-                new CreatorPublication().execute();
+
+            case CREATOR_PUB_CODE: new CreatorPublication().execute();
                 break;
-            case DISPLAY_PUB_CODE:
-                isRunning = false;
-                new DisplayPublication().execute();
+
+            case DISPLAY_PUB_CODE: new DisplayPublication().execute();
                 break;
-            case CLEANER_PUB_CODE:
-                isRunning = false;
-                new CleanerPublication().execute();
+
+            case CLEANER_PUB_CODE: new CleanerPublication().execute();
                 break;
+
             case EXIT_MENU_CODE:
-                isRunning = false;
                 break;
-            default:
+
+            default: {
+
+                isRunning = true; //Continue scanning command
                 System.out.println(INCORRECT_COMMAND + command);
+
+            }
         }
     }
 
@@ -71,7 +71,9 @@ public class MenuPublication implements Action {
 
         while (isRunning) { //Waiting need command
 
-            String command = scanner.next();
+            String command = scanner.nextLine();
+
+            isRunning = false; //Stop scanner
 
             defineCommand(command);
         }

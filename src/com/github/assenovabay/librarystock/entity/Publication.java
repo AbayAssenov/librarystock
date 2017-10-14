@@ -25,6 +25,8 @@ public abstract class Publication {
 
     public abstract String getType();
 
+    public abstract String getAllInfo();
+
     public String getDescription() {
         return description;
     }

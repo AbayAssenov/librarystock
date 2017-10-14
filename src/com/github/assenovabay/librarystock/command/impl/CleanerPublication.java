@@ -52,7 +52,7 @@ public class CleanerPublication implements Action {
     @Override
     public void execute() {
 
-        System.out.println(INPUT_ID_PUB);
+        System.out.println(INPUT_ID_PUB_FOR_DELET);
 
         System.out.println(FOR_RETURN_MENU);
 
@@ -62,7 +62,7 @@ public class CleanerPublication implements Action {
 
         while (isRunning) { //Waiting input
 
-            String userInput = scanner.next();
+            String userInput = scanner.nextLine();
 
             if (RETURN_MENU_CODE.equals(userInput)) { //Checking return to menu
 
