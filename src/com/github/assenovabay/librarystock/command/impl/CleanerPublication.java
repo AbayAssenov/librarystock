@@ -5,32 +5,46 @@ import com.github.assenovabay.librarystock.storage.impl.ArrayStorage;
 
 import java.util.Scanner;
 
+import static com.github.assenovabay.librarystock.constant.LibraryConstatnt.*;
+
 /**
  * @author Abay Assenov
  *         10/12/2017
  */
 public class CleanerPublication implements Action {
 
+
+    /**
+     * Checks to index and removing
+     */
+    private void removeFromStorage(int idPubInStorage) {
+
+        try { //Checking for index
+
+            ArrayStorage.INSTANCE.delete(idPubInStorage);
+
+            System.out.println(DELETED_PUB + idPubInStorage);
+
+        } catch (IndexOutOfBoundsException i) {
+
+            System.out.println(HAVE_NOT_PUB + idPubInStorage);
+        }
+    }
+
+    /**
+     * Checks to number type and call remove method by id from storage
+     */
     private void removePublication(String idPublication) {
 
+        try { //Checking for number
 
-        try {
             int idPubInStorage = Integer.valueOf(idPublication);
 
-            try {
-
-                ArrayStorage.INSTANCE.delete(idPubInStorage);
-
-                System.out.println("Удаленна запись с идентификатором " + idPublication);
-
-            } catch (IndexOutOfBoundsException i) {
-
-                System.out.println("Нет записи с идентификатором-> " + idPublication);
-            }
+            removeFromStorage(idPubInStorage);
 
         } catch (NumberFormatException n) {
 
-            System.out.println("Некоректное число-> " + idPublication);
+            System.out.println(INCORRECT_NUMBER + idPublication);
         }
 
     }
@@ -38,9 +52,9 @@ public class CleanerPublication implements Action {
     @Override
     public void execute() {
 
-        System.out.println("Введите id издания для удаления");
-        System.out.println("\nДля возврата в меню введите команду: \"00\"  ");
+        System.out.println(INPUT_ID_PUB);
 
+        System.out.println(FOR_RETURN_MENU);
 
         boolean isRunning = true;
 
@@ -50,7 +64,7 @@ public class CleanerPublication implements Action {
 
             String userInput = scanner.next();
 
-            if ("00".equals(userInput)) {
+            if (RETURN_MENU_CODE.equals(userInput)) { //Checking return to menu
 
                 isRunning = false;
 

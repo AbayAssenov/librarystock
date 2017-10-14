@@ -12,33 +12,38 @@ import static com.github.assenovabay.librarystock.constant.LibraryConstatnt.*;
  * @author Abay Assenov
  *         10/12/2017
  */
+
 public class DisplayPublication implements Action {
 
+    private void displayFromStorage(Integer idPubInStorage) {
+
+        try {
+
+            Publication currentPublication = ArrayStorage.INSTANCE.read(idPubInStorage);
+
+            currentPublication.setIdStorage(idPubInStorage); //Set id publication from array (index)
+
+            System.out.printf(FORMAT_REGISTERED_PUB_BODY, ID, TYPE, LABEL, RELASE_DATA, COUNT_PAGE, PUBLISHER);
+
+            System.out.println(currentPublication);
+
+        } catch (IndexOutOfBoundsException i) {
+
+            System.out.println(HAVE_NOT_PUB + idPubInStorage);
+        }
+    }
 
     private void displayPublication(String idPublication) {
 
-
         try {
-            int idPubInStorage = Integer.valueOf(idPublication);
 
-            try{
+            Integer idPubInStorage = Integer.valueOf(idPublication);
 
-                Publication currentPublication = ArrayStorage.INSTANCE.read(idPubInStorage);
-
-                currentPublication.setIdStorage(idPubInStorage);
-
-                System.out.printf(FORMAT_REGISTERED_PUB_BODY, ID, TYPE, LABEL, RELASE_DATA, COUNT_PAGE, PUBLISHER);
-
-                System.out.println(currentPublication);
-
-            }catch (IndexOutOfBoundsException i){
-
-                System.out.println("Нет записи с идентификатором-> " + idPublication);
-            }
+            displayFromStorage(idPubInStorage);
 
         } catch (NumberFormatException n) {
 
-            System.out.println("Некоректное число-> " + idPublication);
+            System.out.println(INCORRECT_COMMAND + idPublication);
         }
 
     }
@@ -46,25 +51,25 @@ public class DisplayPublication implements Action {
     @Override
     public void execute() {
 
-        System.out.println("Введите id издания для просмотра");
-        System.out.println("\nДля возврата в меню введите команду: \"00\"  ");
+        System.out.println(INPUT_ID_PUB_FOR_SHOW);
 
-
-        boolean isRunning = true;
+        System.out.println(FOR_RETURN_MENU);
 
         Scanner scanner = new Scanner(System.in);
 
+        boolean isRunning = true;
+
         while (isRunning) { //Waiting input
 
-            String userInput=scanner.next();
+            String userInput = scanner.next();
 
-            if("00".equals(userInput)){
+            if (RETURN_MENU_CODE.equals(userInput)) {
 
                 isRunning = false;
 
                 new MenuPublication().execute();
 
-            }else {
+            } else {
 
                 displayPublication(userInput);
             }

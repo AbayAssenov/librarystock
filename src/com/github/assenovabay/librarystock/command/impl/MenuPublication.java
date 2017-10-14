@@ -17,33 +17,32 @@ public class MenuPublication implements Action {
     /**
      * Defines current command menu
      */
-
     private void defineCommand(String command) {
 
         switch (command) {
-            case "01":
+
+            case REGISTERED_PUB_CODE:
                 isRunning = false;
                 new RegisteredPublication().execute();
                 break;
-            case "02":
+            case CREATOR_PUB_CODE:
                 isRunning = false;
                 new CreatorPublication().execute();
                 break;
-            case "03":
+            case DISPLAY_PUB_CODE:
                 isRunning = false;
                 new DisplayPublication().execute();
                 break;
-            case "04":
+            case CLEANER_PUB_CODE:
                 isRunning = false;
                 new CleanerPublication().execute();
                 break;
-            case "05":
+            case EXIT_MENU_CODE:
                 isRunning = false;
                 break;
             default:
-                System.out.println("Некоректная команда-> " + command);
+                System.out.println(INCORRECT_COMMAND + command);
         }
-
     }
 
     private void showMenu() {
@@ -54,11 +53,11 @@ public class MenuPublication implements Action {
 
         System.out.println(SEPARATOR);
 
-        System.out.printf(FORMAT_MENU_BODY, "01", "Просмотр зарегистрированых изданий в фонде");
-        System.out.printf(FORMAT_MENU_BODY, "02", "Добавление нового издания в фонд");
-        System.out.printf(FORMAT_MENU_BODY, "03", "Просмотр информации выбраного издания");
-        System.out.printf(FORMAT_MENU_BODY, "04", "Удаление выбраного издания");
-        System.out.printf(FORMAT_MENU_BODY, "05", "Выход\n");
+        System.out.printf(FORMAT_MENU_BODY, REGISTERED_PUB_CODE, ITEM_MENU_REGISTRED_PUB);
+        System.out.printf(FORMAT_MENU_BODY, CREATOR_PUB_CODE, ITEM_MENU_CREATOR_PUB);
+        System.out.printf(FORMAT_MENU_BODY, DISPLAY_PUB_CODE, ITEM_MENU_DISPLAY_PUB);
+        System.out.printf(FORMAT_MENU_BODY, CLEANER_PUB_CODE, ITEM_MENU_CLEANER_PUB);
+        System.out.printf(FORMAT_MENU_BODY, EXIT_MENU_CODE, ITEM_MENU_EXIT_MENU);
     }
 
     @Override
@@ -76,7 +75,5 @@ public class MenuPublication implements Action {
 
             defineCommand(command);
         }
-
-
     }
 }
